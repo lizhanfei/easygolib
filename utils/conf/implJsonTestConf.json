@@ -1,0 +1,12 @@
+{
+  "pool": {
+    "size": 3
+  },
+  "switchStatus": "open",
+  "allowUid": [
+    1,
+    2,
+    3,
+    4
+  ]
+}

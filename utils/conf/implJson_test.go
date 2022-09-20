@@ -1,29 +1,23 @@
 package conf
 
-import "testing"
+import (
+	assert2 "github.com/stretchr/testify/assert"
+	"testing"
+)
 
 func TestImplJson_Load(t *testing.T) {
+	assert := assert2.New(t)
 	target := confTest{}
 	confJson := NewImplJson()
 
 	_ = confJson.Load("implJsonTestConf.json", &target)
-	if 3 != target.Pool.Size {
-		panic("pool.size error")
-	}
-	if "open" != target.SwitchStatus {
-		panic("switchStatus error")
-	}
-	if 4 != target.AllowUid[3] {
-		panic("allowUid[3] error")
-	}
+	assert.Equal(target.Pool.Size, 3)
+	assert.Equal(target.SwitchStatus, "open")
+	assert.Equal(target.AllowUid[3], 4)
 
 	err := confJson.Load("implJsonTestNo.json", &target)
-	if err == nil {
-		panic("load NO error")
-	}
+	assert.NotNil(err)
 
 	err = confJson.Load("implJsonTestConfErr.json", &target)
-	if err == nil {
-		panic("load Err error")
-	}
+	assert.NotNil(err)
 }

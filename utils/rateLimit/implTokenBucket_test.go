@@ -7,6 +7,7 @@ import (
 )
 
 func TestImplTokenBucket(t *testing.T) {
+	//assert := assert2.New(t)
 	//1s 允许1000个请求，最大并发100
 	stopChan := false
 	ticker := time.NewTicker(time.Second * 10)

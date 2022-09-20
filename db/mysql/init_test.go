@@ -1,12 +1,13 @@
 package mysql
 
 import (
-	"fmt"
+	assert2 "github.com/stretchr/testify/assert"
 	"testing"
 	"time"
 )
 
 func TestInitMysql(t *testing.T) {
+	assert := assert2.New(t)
 	mysqlClient, err := InitMysql(&MysqlConf{
 		DataBase:        "hyperf",
 		Addr:            "127.0.0.1:3306",
@@ -22,9 +23,7 @@ func TestInitMysql(t *testing.T) {
 		ReadTimeOut:     1500 * time.Millisecond,
 	}, nil)
 
-	if err != nil {
-		panic(fmt.Sprintf("init fail, err:%s", err))
-	}
+	assert.Nil(err)
 
 	mysqlClient.Table("brand_all").Create(map[string]interface{}{
 		"brand_name": "aa",

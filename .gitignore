@@ -24,7 +24,4 @@ go.work
 
 /log/*.log
 
-/utils/conf/*.json
-/utils/conf/*.yaml
-
 .idea

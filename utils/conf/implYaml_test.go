@@ -1,6 +1,9 @@
 package conf
 
-import "testing"
+import (
+	assert2 "github.com/stretchr/testify/assert"
+	"testing"
+)
 
 type confTest struct {
 	Pool         pool   `yaml:"pool"`
@@ -13,27 +16,18 @@ type pool struct {
 }
 
 func TestImplYaml_Load(t *testing.T) {
+	assert := assert2.New(t)
 	target := confTest{}
 	confYaml := NewImplYaml()
 
 	_ = confYaml.Load("implYamlTestConf.yaml", &target)
-	if 3 != target.Pool.Size {
-		panic("pool.size error")
-	}
-	if "open" != target.SwitchStatus {
-		panic("switchStatus error")
-	}
-	if 4 != target.AllowUid[3] {
-		panic("allowUid[3] error")
-	}
+	assert.Equal(3, target.Pool.Size)
+	assert.Equal("open", target.SwitchStatus)
+	assert.Equal(4, target.AllowUid[3])
 
 	err := confYaml.Load("imlYamlTestNo.yaml", &target)
-	if err == nil {
-		panic("load NO error")
-	}
+	assert.NotNil(err)
 
 	err = confYaml.Load("implYamlTestConfErr.yaml", &target)
-	if err == nil {
-		panic("load Err error")
-	}
+	assert.NotNil(err)
 }

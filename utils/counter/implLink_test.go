@@ -1,11 +1,13 @@
 package counter
 
 import (
+	assert2 "github.com/stretchr/testify/assert"
 	"testing"
 	"time"
 )
 
 func TestImplLink(t *testing.T) {
+	assert := assert2.New(t)
 	//需求：实例化一个窗口时间长度为20ms的计数器
 	counter := NewCounterImplLink(20)
 	//每3ms压入一个计数
@@ -14,52 +16,37 @@ func TestImplLink(t *testing.T) {
 	counter.Add(1)
 	<-ticker.C
 	countNow, _ := counter.Count()
-	if countNow != 1 {
-		panic("error")
-	}
+	assert.Equal(1, countNow)
 
 	counter.Add(1)
 	<-ticker.C
 	countNow, _ = counter.Count()
-	if countNow != 2 {
-		panic("error")
-	}
+	assert.Equal(2, countNow)
 
 	counter.Add(1)
 	<-ticker.C
 	countNow, _ = counter.Count()
-	if countNow != 3 {
-		panic("error")
-	}
+	assert.Equal(3, countNow)
 
 	counter.Add(1)
 	<-ticker.C
 	countNow, _ = counter.Count()
-	if countNow != 4 {
-		panic("error")
-	}
+	assert.Equal(4, countNow)
 
 	counter.Add(1)
 	<-ticker.C
 	countNow, _ = counter.Count()
-	if countNow != 5 {
-		panic("error")
-	}
+	assert.Equal(5, countNow)
 
 	counter.Add(1)
 	<-ticker.C
 	countNow, _ = counter.Count()
-	if countNow != 6 {
-		panic("error")
-	}
+	assert.Equal(6, countNow)
 
 	counter.Add(1)
 	<-ticker.C
 	countNow, _ = counter.Count()
-	if countNow != 6 {
-		panic("error")
-	}
-
+	assert.Equal(6, countNow)
 }
 
 func BenchmarkImplLink_Add(b *testing.B) {
