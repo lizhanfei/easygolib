@@ -27,3 +27,4 @@ go.work
 /utils/conf/*.json
 /utils/conf/*.yaml
 
+.idea
