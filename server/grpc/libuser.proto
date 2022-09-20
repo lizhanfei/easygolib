@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option go_package="./;grpc";
+package grpc;
+
+service LibTestService {
+    rpc LibAuth(LibAuthRequest) returns (LibAuthResponse) {}
+}
+
+message LibAuthRequest {
+    string token = 1;
+}
+
+message LibAuthResponse {
+    int32  id   = 1;
+    string name = 2;
+    int32  status = 3;
+}
