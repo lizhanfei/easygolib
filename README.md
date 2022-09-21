@@ -18,5 +18,5 @@
 ## db
 - [gorm](doc/gorm.md)
 
-
-go tool cover -html=./cover/coverage.data -o ./cover/coverage.html
+## 示例demo
+- [web服务](https://github.com/lizhanfei/easygolib-example)
