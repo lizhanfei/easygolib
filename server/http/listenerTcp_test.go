@@ -1,16 +1,16 @@
 package http
 
-import "testing"
+import (
+	assert2 "github.com/stretchr/testify/assert"
+	"testing"
+)
 
 func TestNewListenerTcp(t *testing.T) {
+	assert := assert2.New(t)
 	l, err := NewListenerTcp("")
-	if err != nil {
-		panic("create fail")
-	}
+	assert.Nil(err)
 	l.Close()
 
 	l, err = NewListenerTcp(":oo")
-	if err == nil {
-		panic("listen error")
-	}
+	assert.NotNil(err)
 }

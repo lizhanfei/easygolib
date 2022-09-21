@@ -17,3 +17,6 @@
 
 ## db
 - [gorm](doc/gorm.md)
+
+
+go tool cover -html=./cover/coverage.data -o ./cover/coverage.html

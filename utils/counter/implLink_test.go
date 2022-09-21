@@ -16,37 +16,37 @@ func TestImplLink(t *testing.T) {
 	counter.Add(1)
 	<-ticker.C
 	countNow, _ := counter.Count()
-	assert.Equal(1, countNow)
+	assert.Equal(int64(1), countNow)
 
 	counter.Add(1)
 	<-ticker.C
 	countNow, _ = counter.Count()
-	assert.Equal(2, countNow)
+	assert.Equal(int64(2), countNow)
 
 	counter.Add(1)
 	<-ticker.C
 	countNow, _ = counter.Count()
-	assert.Equal(3, countNow)
+	assert.Equal(int64(3), countNow)
 
 	counter.Add(1)
 	<-ticker.C
 	countNow, _ = counter.Count()
-	assert.Equal(4, countNow)
+	assert.Equal(int64(4), countNow)
 
 	counter.Add(1)
 	<-ticker.C
 	countNow, _ = counter.Count()
-	assert.Equal(5, countNow)
+	assert.Equal(int64(5), countNow)
 
 	counter.Add(1)
 	<-ticker.C
 	countNow, _ = counter.Count()
-	assert.Equal(6, countNow)
+	assert.Equal(int64(6), countNow)
 
 	counter.Add(1)
 	<-ticker.C
 	countNow, _ = counter.Count()
-	assert.Equal(6, countNow)
+	assert.Equal(int64(6), countNow)
 }
 
 func BenchmarkImplLink_Add(b *testing.B) {
